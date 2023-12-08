@@ -14,6 +14,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y sudo openssh-server
 RUN mkdir -p /run/sshd
 
-# RUN apt update && apt install -y sudo wireguard iproute2
+RUN apt update && apt install -y sudo wireguard iproute2
 
 RUN pip config set global.disable-pip-version-check true

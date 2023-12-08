@@ -1,11 +1,12 @@
 version: "2.2"
 services:
-  mbptrack3d-dev:
+  mmdet3d-cuda12:
     shm_size: '8gb'
     runtime: nvidia
     build:
-      context: .
-      # dockerfile: Dockerfile-yolov5
+      # context: .
+      # dockerfile: Dockerfile
+      dockerfile: sly_net.Dockerfile
       args:
         # IMAGE: supervisely/base-py-sdk:6.72.2
         # IMAGE: supervisely/ritm:1.2.0
@@ -13,10 +14,13 @@ services:
         # IMAGE: supervisely/yolov5:1.0.0
         # IMAGE: supervisely/detectron2:1.0.5
         # IMAGE: paddlepaddle/paddle:2.4.2-gpu-cuda11.7-cudnn8.4-trt8.4
-        # IMAGE: supervisely/mmseg:1.3.1
         # IMAGE: supervisely/hrda:1.0.0
+        # IMAGE: supervisely/embeddings-app:1.0.1
+        # IMAGE: supervisely/mmseg:1.3.4
         # IMAGE: supervisely/mmdet-3.0:1.0.0
-        IMAGE: pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
+        # IMAGE: supervisely/mmcls:1.0.1
+        # IMAGE: supervisely/serve-clickseg:1.0.2
+        IMAGE: supervisely/mmdet3d-v1.x
     cap_add:
       - NET_ADMIN
     env_file: ~/supervisely.env
