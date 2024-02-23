@@ -1,0 +1,29 @@
+{
+    "image": "supervisely/cotracker:1.0.1",
+    "initializeCommand": "./.devcontainer/init.sh https://github.com/supervisely-ecosystem/co-tracker",
+
+    "workspaceFolder": "/workspaces/supervisely-utils/app",
+    "postCreateCommand": "/workspaces/supervisely-utils/.devcontainer/load-env.sh && pip install -r requirements.txt && apt update && apt install curl wireguard iproute2",
+    "mounts": [
+        "source=${localEnv:HOME}/supervisely.env,target=/workspaces/supervisely.env,type=bind",
+        // "source=/etc/passwd,target=/etc/passwd"
+    ],
+    // "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/app,type=bind,consistency=cached",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+            ]
+        }
+    },
+    // "onCreateCommand": "mkdir -p /root/app"
+    "runArgs": [
+        "--gpus",
+        "all",
+        "--ipc=host",
+        "--net=host",
+        "--cap-add",
+        "NET_ADMIN"
+    ],
+    // "remoteUser": "poldersen2"
+}
