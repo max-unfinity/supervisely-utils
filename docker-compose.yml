@@ -1,8 +1,10 @@
 version: "2.2"
 services:
-  mmdet3d-cuda12:
+  yolov8-dev:
     shm_size: '8gb'
     runtime: nvidia
+    labels:
+      - "role=development"
     build:
       # context: .
       # dockerfile: Dockerfile
@@ -11,23 +13,25 @@ services:
         # IMAGE: supervisely/base-py-sdk:6.72.2
         # IMAGE: supervisely/ritm:1.2.0
         # IMAGE: supervisely/ritm-training:1.1.4
-        # IMAGE: supervisely/yolov5:1.0.0
+        # IMAGE: supervisely/cotracker:1.0.1
         # IMAGE: supervisely/detectron2:1.0.5
         # IMAGE: paddlepaddle/paddle:2.4.2-gpu-cuda11.7-cudnn8.4-trt8.4
         # IMAGE: supervisely/hrda:1.0.0
-        # IMAGE: supervisely/embeddings-app:1.0.1
         # IMAGE: supervisely/mmseg:1.3.4
-        # IMAGE: supervisely/mmdet-3.0:1.0.0
+        # IMAGE: supervisely/mmdet-3.0:1.0.10
         # IMAGE: supervisely/mmcls:1.0.1
-        # IMAGE: supervisely/serve-clickseg:1.0.2
-        IMAGE: supervisely/mmdet3d-v1.x
+        # IMAGE: supervisely/serve-clickseg:1.0.5
+        # IMAGE: supervisely/mmdet3d-v1.x
+        # IMAGE: supervisely/langchain:1.0.0
+        # IMAGE: supervisely/rt-detr:1.0.0
+        IMAGE: supervisely/yolov8:dev
     cap_add:
       - NET_ADMIN
     env_file: ~/supervisely.env
     environment:
       - DEBIAN_FRONTEND=noninteractive
     ports:
-      - "9704:22"
+      - "9707:22"
     # volumes:
     #   - "~/datasets:/root/datasets"
     entrypoint:

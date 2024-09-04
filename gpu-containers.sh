@@ -9,7 +9,7 @@ printf "%-12s %-15s %-20s %-40s %-30s\n" "PID" "CONTAINER_ID" "GPU_MEMORY_USAGE(
 # Iterate over each PID and get the Docker container ID
 echo "$pids" | while read pid mem; do
     if [[ ! -z $pid && ! -z $mem ]]; then
-        container_id=$(cat /proc/$pid/cgroup | awk -F'-' '{print $NF}' | awk -F'.' '{print $1}')
+        container_id=$(cat /proc/$pid/cgroup | grep 'docker' | awk -F'/' '{print $NF}')
         container_id_short=${container_id:0:12}
         docker_info=$(docker ps --no-trunc | grep $container_id)
         image_name=$(echo $docker_info | awk '{print $2}')
