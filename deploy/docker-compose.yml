@@ -1,0 +1,25 @@
+services:
+  image_test:
+    shm_size: '8gb'
+    runtime: nvidia
+    labels:
+      - "role=development"
+    # build: 
+    #   dockerfile: "deploy.Dockerfile"
+    #   args:
+    #     IMAGE: supervisely/yolov8:1.0.31
+    image: supervisely/yolov8:1.0.31
+    cap_add:
+      - NET_ADMIN
+    env_file: ~/supervisely.env
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+      - ENV=production
+    # ports:
+      # - "9702:22"
+      # - "8000:8000"
+    volumes:
+      - "./yolov8:/app"
+    entrypoint:
+      "python3 -m uvicorn src.main:m.app --app-dir /app/yolov8/serve --host 0.0.0.0 --port 8000 --ws websockets"
+    working_dir: "/app"

@@ -1,6 +1,6 @@
 version: "2.2"
 services:
-  yolov8-dev:
+  gui:
     shm_size: '8gb'
     runtime: nvidia
     labels:
@@ -24,16 +24,17 @@ services:
         # IMAGE: supervisely/mmdet3d-v1.x
         # IMAGE: supervisely/langchain:1.0.0
         # IMAGE: supervisely/rt-detr:1.0.0
-        IMAGE: supervisely/yolov8:dev
+        IMAGE: supervisely/yolov8:1.0.31
+        # IMAGE: supervisely/segment-anything-2:1.0.5
     cap_add:
       - NET_ADMIN
     env_file: ~/supervisely.env
     environment:
       - DEBIAN_FRONTEND=noninteractive
     ports:
-      - "9707:22"
-    # volumes:
-    #   - "~/datasets:/root/datasets"
+      - "9702:22"
+    volumes:
+      - "~/volume:/root/volume"
     entrypoint:
       - /usr/sbin/sshd
       - -D
