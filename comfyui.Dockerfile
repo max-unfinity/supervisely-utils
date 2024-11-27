@@ -14,18 +14,31 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI
 RUN pip install -r ComfyUI/requirements.txt
 WORKDIR /root/volume/ComfyUI
 
-# Extensions
+
+# -- Extensions --
+# ComfyUI Manager
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager
 RUN pip install -r custom_nodes/ComfyUI-Manager/requirements.txt
 
+# IPAdapter Plus
 RUN git clone https://github.com/cubiq/ComfyUI_IPAdapter_plus custom_nodes/ComfyUI_IPAdapter_plus
+
+# Impact-Pack
+RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack custom_nodes/ComfyUI-Impact-Pack
+RUN python3 custom_nodes/ComfyUI-Impact-Pack/install.py
+
+# rgthree-comfy
+RUN git clone https://github.com/rgthree/rgthree-comfy custom_nodes/rgthree-comfy
+
 
 RUN mkdir -p ./models/clip/
 RUN mkdir -p ./models/clip_vision/
 RUN mkdir -p ./models/ipadapter/
 RUN mkdir -p ./models/upscale_models/
  
-# Base models
+
+# -- Base models --
+# ponyRealism_V22MainVAE.safetensors
 RUN wget "https://civitai.com/api/download/models/914390?type=Model&format=SafeTensor&size=full&fp=fp16&token=f5814fe67dc1e23398de1194252f1e0c" --content-disposition -P ./models/checkpoints/
  
 # Flux 1.D

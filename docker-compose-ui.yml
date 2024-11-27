@@ -1,5 +1,5 @@
 services:
-  cylindrical:
+  gui:
     shm_size: '8gb'
     runtime: nvidia
     labels:
@@ -10,9 +10,9 @@ services:
           memory: 14G
     build:
       # context: .
-      dockerfile: Dockerfile
+      # dockerfile: Dockerfile
       # dockerfile: sly_net.Dockerfile
-      # dockerfile: comfyui_env.Dockerfile
+      dockerfile: comfyui_env.Dockerfile
       args:
         # IMAGE: supervisely/base-py-sdk:6.72.2
         # IMAGE: supervisely/ritm:1.2.0
@@ -36,10 +36,11 @@ services:
     environment:
       - DEBIAN_FRONTEND=noninteractive
     ports:
-      - "9703:22"
+      - "9702:22"
+      - "8188:8188"
     volumes:
       - "~/volume:/root/volume"
-    # restart: always
-    entrypoint:
-      - /usr/sbin/sshd
-      - -D
+    restart: always
+    # entrypoint:
+    #   - /usr/sbin/sshd
+    #   - -D
