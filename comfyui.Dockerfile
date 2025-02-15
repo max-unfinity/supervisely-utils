@@ -40,7 +40,13 @@ RUN mkdir -p ./models/upscale_models/
 # -- Base models --
 # ponyRealism_V22MainVAE.safetensors
 RUN wget "https://civitai.com/api/download/models/914390?type=Model&format=SafeTensor&size=full&fp=fp16&token=f5814fe67dc1e23398de1194252f1e0c" --content-disposition -P ./models/checkpoints/
- 
+
+RUN wget "https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/main/pytorch_lora_weights.safetensors" -P ./models/loras/lcm-lora-sdxl.safetensors
+RUN wget "https://civitai.com/api/download/models/351306?type=Model&format=SafeTensor&size=full&fp=fp16&token=f5814fe67dc1e23398de1194252f1e0c" --content-disposition -P ./models/checkpoints/
+RUN wget "https://civitai.com/api/download/models/798204?type=Model&format=SafeTensor&size=full&fp=fp16&token=f5814fe67dc1e23398de1194252f1e0c" --content-disposition -P ./models/checkpoints/
+RUN wget "https://civitai.com/api/download/models/501240?type=Model&format=SafeTensor&size=full&fp=fp16&token=f5814fe67dc1e23398de1194252f1e0c" --content-disposition -P ./models/checkpoints/
+RUN wget "https://civitai.com/api/download/models/501286?type=Model&format=SafeTensor&size=full&fp=fp16&token=f5814fe67dc1e23398de1194252f1e0c" --content-disposition -P ./models/checkpoints/
+
 # Flux 1.D
 RUN wget --header="Authorization: Bearer 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" "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors" -P ./models/unet/
 RUN wget --header="Authorization: Bearer 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" "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors" -P ./models/vae/

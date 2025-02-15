@@ -29,10 +29,15 @@ RUN python3 custom_nodes/ComfyUI-Impact-Pack/install.py
 RUN python3 custom_nodes/ComfyUI-Impact-Pack/install-manual.py
 RUN pip install -r custom_nodes/ComfyUI-Impact-Pack/requirements.txt
 
+# controlnet_aux
+RUN git clone https://github.com/Fannovel16/comfyui_controlnet_aux custom_nodes/comfyui_controlnet_aux
+RUN pip install -r custom_nodes/comfyui_controlnet_aux/requirements.txt
+RUN pip install 'protobuf<=3.20.x'
+
 # rgthree-comfy
 # RUN git clone https://github.com/rgthree/rgthree-comfy custom_nodes/rgthree-comfy
 
 WORKDIR /root/volume/ComfyUI
 
 EXPOSE 8188
-ENTRYPOINT ["python3", "main.py", "--listen", "0.0.0.0"]
+# ENTRYPOINT ["python3", "main.py", "--listen", "0.0.0.0"]

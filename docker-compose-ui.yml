@@ -7,7 +7,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 14G
+          memory: 24G
     build:
       # context: .
       # dockerfile: Dockerfile
@@ -36,11 +36,13 @@ services:
     environment:
       - DEBIAN_FRONTEND=noninteractive
     ports:
-      - "9702:22"
+      # - "9702:22"
       - "8188:8188"
     volumes:
       - "~/volume:/root/volume"
     restart: always
-    # entrypoint:
-    #   - /usr/sbin/sshd
-    #   - -D
+    entrypoint:
+      - python3
+      - main.py
+      - --listen
+      - 0.0.0.0
