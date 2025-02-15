@@ -1,5 +1,5 @@
 services:
-  cylindrical:
+  action-recognition:
     shm_size: '8gb'
     runtime: nvidia
     labels:
@@ -10,8 +10,8 @@ services:
           memory: 14G
     build:
       # context: .
-      dockerfile: Dockerfile
-      # dockerfile: sly_net.Dockerfile
+      # dockerfile: Dockerfile
+      dockerfile: sly_net.Dockerfile
       # dockerfile: comfyui_env.Dockerfile
       args:
         # IMAGE: supervisely/base-py-sdk:6.72.2
@@ -28,15 +28,16 @@ services:
         # IMAGE: supervisely/mmdet3d-v1.x
         # IMAGE: supervisely/langchain:1.0.0
         # IMAGE: supervisely/rt-detr:1.0.0
-        IMAGE: supervisely/yolov8:1.0.31
-        # IMAGE: supervisely/segment-anything-2:1.0.5
+        # IMAGE: supervisely/yolov8:1.0.40
+        IMAGE: supervisely/rt-detrv2:1.0.7
+        # IMAGE: supervisely/apply-nn-to-videos-project:1.0.5
     cap_add:
       - NET_ADMIN
     env_file: ~/supervisely.env
     environment:
       - DEBIAN_FRONTEND=noninteractive
-    ports:
-      - "9703:22"
+    # ports:
+    #   - "9706:22"
     volumes:
       - "~/volume:/root/volume"
     # restart: always
