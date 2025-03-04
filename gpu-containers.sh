@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo cat /proc/3018966/environ | xargs -0 -L1 | grep -E '^(APP_NAME|SERVER_ADDRESS|TASK_ID|USER_LOGIN)='
+# sudo cat /proc/2693049/environ | xargs -0 -L1 | grep -E '^(APP_NAME|SERVER_ADDRESS|TASK_ID|USER_LOGIN)='
 
 # Get a list of PIDs and their GPU memory usage
 pids=$(nvidia-smi pmon -c 1 -s mu | awk 'NR>2 && $3=="C" {print $2, $4}')
@@ -21,7 +21,7 @@ echo "$pids" | while read pid mem; do
         image_name=$(echo $docker_info | awk '{print $2}')
         # for kubepods
         if [ -z "$image_name" ]; then
-            image_name=$(sudo crictl inspect cec202aa5a67 | grep '"image": "docker' | head -n1 | awk -F'"' '{print $4}')
+            image_name=$(sudo crictl inspect $container_id_short | grep '"image": "docker' | head -n1 | awk -F'"' '{print $4}')
         fi
         name=$(echo $docker_info | awk '{print $NF}')
         name_short="${name:0:30}""..."
