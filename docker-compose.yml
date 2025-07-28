@@ -1,5 +1,5 @@
 services:
-  mvd-cu118-py38-torch-1.11:
+  semi-detr-cu111-torch190:
     shm_size: '8gb'
     runtime: nvidia
     labels:
@@ -10,35 +10,26 @@ services:
           memory: 14G
     build:
       # context: .
-      # dockerfile: Dockerfile
-      dockerfile: sly_net.Dockerfile
-      # dockerfile: comfyui_env.Dockerfile
+      dockerfile: Dockerfile
+      # dockerfile: sly_net.Dockerfile
+      # dockerfile: vscode-old-linux.Dockerfile
       args:
-        # IMAGE: supervisely/base-py-sdk:6.72.2
-        # IMAGE: supervisely/ritm:1.2.0
-        # IMAGE: supervisely/ritm-training:1.1.4
-        # IMAGE: supervisely/cotracker:1.0.1
-        # IMAGE: supervisely/detectron2:1.0.5
         # IMAGE: paddlepaddle/paddle:2.4.2-gpu-cuda11.7-cudnn8.4-trt8.4
-        # IMAGE: supervisely/hrda:1.0.6
-        # IMAGE: supervisely/mmseg:1.3.4
-        # IMAGE: supervisely/mmdet-3.0:1.0.10
-        # IMAGE: supervisely/mmcls:1.0.1
-        # IMAGE: supervisely/serve-clickseg:1.0.5
-        # IMAGE: supervisely/mmdet3d-v1.x
-        # IMAGE: supervisely/langchain:1.0.0
-        # IMAGE: supervisely/rt-detr:1.0.0
-        # IMAGE: supervisely/yolov8:1.0.40
-        # IMAGE: supervisely/rt-detrv2:1.0.7
+        # IMAGE: supervisely/rt-detrv2:1.0.23
         # IMAGE: supervisely/apply-nn-to-videos-project:1.0.5
-        IMAGE: supervisely/mvd:dev
+        # IMAGE: supervisely/deim:1.0.0
+        # IMAGE: supervisely/mvd:dev
+        # IMAGE: supervisely/mouse-action-recognition:1.0.0
+        # IMAGE: supervisely/florence-2:1.0.1
+        # IMAGE: supervisely/mmdet:1.0.15
+        IMAGE: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel
     cap_add:
       - NET_ADMIN
     env_file: ~/supervisely.env
     environment:
       - DEBIAN_FRONTEND=noninteractive
     # ports:
-    #   - "9706:22"
+    #   - "8000:8001"
     volumes:
       - "~/volume:/root/volume"
     # restart: always
