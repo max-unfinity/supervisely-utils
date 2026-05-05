@@ -12,3 +12,6 @@ docker cp $SRC_ID:$SRC_PATH ./docker_share
 docker cp "./docker_share/$(basename $SRC_PATH)" $DST_ID:$DST_PATH
 
 rm -rf ./docker_share
+
+rsync -avz ~/volume/data/mouse/output poldersen2@10.62.10.8:/home/poldersen2/volume/data/mouse > rsync_output3.log 2>&1 &
+rsync -avz sampled_dataset poldersen2@10.62.10.8:/home/poldersen2/volume/data/mouse

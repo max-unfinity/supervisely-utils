@@ -1,0 +1,24 @@
+services:
+  mmet-v3.3.0-cu128-v2-snapshot:
+    image: mmet-v3.3.0-cu128-v2-snapshot  # Use committed image instead of build
+    shm_size: '8gb'
+    runtime: nvidia
+    labels:
+      - "role=development"
+    deploy:
+      resources:
+        limits:
+          memory: 24G  # Increased from 14G
+    cap_add:
+      - NET_ADMIN
+    env_file: ~/supervisely.env
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    # ports:
+    #   - "9706:22"
+    volumes:
+      - "~/volume:/root/volume"
+    # restart: always
+    entrypoint:
+      - /usr/sbin/sshd
+      - -D

@@ -1,5 +1,5 @@
 services:
-  semi-detr-cu111-torch190:
+  efficientnet-cu128:
     shm_size: '8gb'
     runtime: nvidia
     labels:
@@ -12,17 +12,15 @@ services:
       # context: .
       dockerfile: Dockerfile
       # dockerfile: sly_net.Dockerfile
-      # dockerfile: vscode-old-linux.Dockerfile
+      # dockerfile: comfyui_env.Dockerfile
       args:
         # IMAGE: paddlepaddle/paddle:2.4.2-gpu-cuda11.7-cudnn8.4-trt8.4
         # IMAGE: supervisely/rt-detrv2:1.0.23
         # IMAGE: supervisely/apply-nn-to-videos-project:1.0.5
-        # IMAGE: supervisely/deim:1.0.0
-        # IMAGE: supervisely/mvd:dev
-        # IMAGE: supervisely/mouse-action-recognition:1.0.0
-        # IMAGE: supervisely/florence-2:1.0.1
-        # IMAGE: supervisely/mmdet:1.0.15
-        IMAGE: pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel
+        # IMAGE: supervisely/mmdet-3.3.0-cu121
+        # IMAGE: supervisely/mmdet-v3.3.0-cu128:v4
+        # IMAGE: supervisely/mmseg-v1.2.2-cu128:v1.0.6
+        IMAGE: supervisely/efficient-net-v2:dev
     cap_add:
       - NET_ADMIN
     env_file: ~/supervisely.env

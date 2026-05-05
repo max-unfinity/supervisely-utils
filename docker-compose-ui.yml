@@ -40,7 +40,7 @@ services:
       - "8188:8188"
     volumes:
       - "~/volume:/root/volume"
-    restart: always
+    # restart: always
     entrypoint:
       - python3
       - main.py

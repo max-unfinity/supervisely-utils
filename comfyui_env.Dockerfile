@@ -26,7 +26,7 @@ RUN pip install -r custom_nodes/ComfyUI-Manager/requirements.txt
 # Impact-Pack
 RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack custom_nodes/ComfyUI-Impact-Pack
 RUN python3 custom_nodes/ComfyUI-Impact-Pack/install.py
-RUN python3 custom_nodes/ComfyUI-Impact-Pack/install-manual.py
+# RUN python3 custom_nodes/ComfyUI-Impact-Pack/install-manual.py
 RUN pip install -r custom_nodes/ComfyUI-Impact-Pack/requirements.txt
 
 # controlnet_aux

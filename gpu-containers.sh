@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# sudo cat /proc/2693049/environ | xargs -0 -L1 | grep -E '^(APP_NAME|SERVER_ADDRESS|TASK_ID|USER_LOGIN)='
+# sudo cat /proc/374418/environ | xargs -0 -L1 | grep -E '^(APP_NAME|SERVER_ADDRESS|TASK_ID|USER_LOGIN|TEAM_ID)='
+# sudo kill -9 1108476
+# for pid in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader | sort -u); do sudo cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep -E '^(USER_LOGIN|APP_NAME|SERVER_ADDRESS|TEAM_ID|GROUP)=' && echo "PID: $pid"; done
 
 # Get a list of PIDs and their GPU memory usage
 pids=$(nvidia-smi pmon -c 1 -s mu | awk 'NR>2 && $3=="C" {print $2, $4}')
