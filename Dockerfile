@@ -11,7 +11,7 @@ FROM $IMAGE
 # SSH-server
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y sudo openssh-server
+RUN apt-get update && apt-get install -y sudo openssh-server git wget curl
 RUN mkdir -p /run/sshd
 
 # RUN apt update && apt install -y sudo wireguard iproute2
